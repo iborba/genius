@@ -7,14 +7,13 @@ var context;
 (function() {
 	context = new AudioContext();
 	acendeLuz();
-	return false;
 })();
-
 NodeList.prototype.addEventListener = function(event, func) {
 	this.forEach(function(content, item) {
 		content.addEventListener(event, func);
 	});
 };
+
 reset.addEventListener("click", function() {
 	currentClick = 0;
 	arrPosicoes = [];
@@ -22,18 +21,6 @@ reset.addEventListener("click", function() {
 });
 
 div.addEventListener("click", function() {
-	var currentColor = 0;
-	switch (this.id) {
-		case "green":
-			currentColor = 1;
-		case "red":
-			currentColor = 2;
-		case "blue":
-			currentColor = 3;
-		case "yellow":
-			currentColor = 4;
-	}
-
 	acendeLuz();
 	currentClick++;
 });
@@ -61,37 +48,37 @@ function acendeLuz() {
 			frequency = 261.6;
 			break;
 	}
-
+	
 	playSound(currentColor, frequency);
 	fade(document.getElementById(currentColor));
 	arrPosicoes.push(proximaLuz);
 }
 
 function fade(element) {
-	var op = 1; // initial opacity
+	var opacity = 1;
 	var timer = setInterval(function() {
-		if (op <= 0.5) {
+		if (opacity <= 0.5)
 			clearInterval(timer);
-			// element.style.display = 'none';
-		}
-		element.style.opacity = op;
-		element.style.filter = "alpha(opacity=" + op * 100 + ")";
-		op -= op * 0.3;
+		
+		element.style.opacity = opacity;
+		element.style.filter = "alpha(opacity=" + opacity * 100 + ")";
+		opacity -= opacity * 0.4;
 	}, 30);
 
 	unfade(element);
 }
 
 function unfade(element) {
-	var op = 0.1; // initial opacity
+	var opacity = 0.1;
 	element.style.display = "block";
+	
 	var timer = setInterval(function() {
-		if (op >= 1) {
+		if (opacity >= 1)
 			clearInterval(timer);
-		}
-		element.style.opacity = op;
-		element.style.filter = "alpha(opacity=" + op * 100 + ")";
-		op += op * 0.3;
+		
+		element.style.opacity = opacity;
+		element.style.filter = "alpha(opacity=" + opacity * 100 + ")";
+		opacity += opacity * 0.5;
 	}, 30);
 }
 

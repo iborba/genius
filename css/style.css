@@ -1,3 +1,10 @@
+html{
+	background: url('http://i.stack.imgur.com/jGlzr.png') no-repeat 0 0 scroll;
+	background-color:#0C0C0C;
+	background-size: 100% 100%;
+	height:100%;
+	width:100%;
+}
 body{
 	font-family: 'Baloo Bhaina', cursive;
 }
@@ -6,38 +13,70 @@ div.genius{
 	height: 300px;
 	margin: 0 auto;
 	margin-top: 80px;
+	border: solid 1px #555; 
+	background: #000;
+	box-shadow: 40px -70px rgba(0,0,0,0.6); 
+	-moz-box-shadow: 40px -70px rgba(0,0,0,0.6); 
+	-webkit-box-shadow: 0px 0px 30px 20px rgba(0,0,0,0.6); 
+	-o-box-shadow: 10px -10px rgba(0,0,0,0.6); 
+	border-radius:100%;
+
+}
+div.green{
+	width: 140px;
+	height: 140px;
+	border: 5px solid;
+	border-top-left-radius: 97%;
 }
 div#green{
 	background: #00a74a;
 	width: 140px;
 	height: 140px;
-	border: 5px solid;
 	border-top-left-radius: 100%;
+}
+
+div.red{
+	width: 140px;
+	height: 140px;
+	border: 5px solid;
+	border-top-right-radius: 97%;
+	margin: -150px 150px;
 }
 div#red{
 	background: #9f0f17;
 	width: 140px;
 	height: 140px;
-	border: 5px solid;
 	border-top-right-radius: 100%;
-	margin: -150px 150px;
+}
+
+div.blue{
+	width: 140px;
+	height: 140px;
+	border: 5px solid;
+	border-bottom-right-radius: 97%;
+	margin: 150px 150px;
 }
 div#blue{
 	background: #094a8f;
 	width: 140px;
 	height: 140px;
-	border: 5px solid;
 	border-bottom-right-radius: 100%;
-	margin: 150px 150px;
+}
+
+div.yellow{
+	width: 140px;
+	height: 140px;
+	border: 5px solid;
+	border-bottom-left-radius: 97%;
+	margin: -300px 0;
 }
 div#yellow{
 	background: #cca707;
 	width: 140px;
 	height: 140px;
-	border: 5px solid;
 	border-bottom-left-radius: 100%;
-	margin: -300px 0;
 }
+
 div.panel{
 	background: #ECE7EE;
 	width: 150px;
