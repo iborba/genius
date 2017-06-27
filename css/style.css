@@ -1,0 +1,67 @@
+body{
+	font-family: 'Baloo Bhaina', cursive;
+}
+div.genius{
+	width: 300px;
+	height: 300px;
+	margin: 0 auto;
+	margin-top: 80px;
+}
+div#green{
+	background: #00a74a;
+	width: 140px;
+	height: 140px;
+	border: 5px solid;
+	border-top-left-radius: 100%;
+}
+div#red{
+	background: #9f0f17;
+	width: 140px;
+	height: 140px;
+	border: 5px solid;
+	border-top-right-radius: 100%;
+	margin: -150px 150px;
+}
+div#blue{
+	background: #094a8f;
+	width: 140px;
+	height: 140px;
+	border: 5px solid;
+	border-bottom-right-radius: 100%;
+	margin: 150px 150px;
+}
+div#yellow{
+	background: #cca707;
+	width: 140px;
+	height: 140px;
+	border: 5px solid;
+	border-bottom-left-radius: 100%;
+	margin: -300px 0;
+}
+div.panel{
+	background: #ECE7EE;
+	width: 150px;
+	height: 150px;
+	border: 10px solid;
+	border-radius: 100%;
+	margin: 65px 65px;
+	position: absolute;
+}
+div.panel span{
+	margin-left: 47px;
+}
+div.panel span.reset{
+	margin-left: 0px;
+	font-family: Orbitron cursiva;
+	font-size: 12px;
+}
+div.panel input{
+	margin-left: 62px;
+	border-radius: 100%;
+	width: 20px;
+	background: red;
+	cursor: pointer;
+}
+div#green:hover, div#red:hover, div#blue:hover, div#yellow:hover{
+	cursor: pointer;
+}
