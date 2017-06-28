@@ -6,18 +6,22 @@ html{
 	width:100%;
 }
 body{
-	font-family: 'Baloo Bhaina', cursive;
+	font-family: 'Faster One', cursive;;
 }
+
+/*
+Game
+*/
 div.genius{
 	width: 300px;
 	height: 300px;
 	margin: 0 auto;
 	margin-top: 80px;
 	border: solid 1px #555; 
-	background: #000;
+	background: #fff;
 	box-shadow: 40px -70px rgba(0,0,0,0.6); 
 	-moz-box-shadow: 40px -70px rgba(0,0,0,0.6); 
-	-webkit-box-shadow: 0px 0px 30px 20px rgba(0,0,0,0.6); 
+	-webkit-box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.6); 
 	-o-box-shadow: 10px -10px rgba(0,0,0,0.6); 
 	border-radius:100%;
 
@@ -76,7 +80,13 @@ div#yellow{
 	height: 140px;
 	border-bottom-left-radius: 100%;
 }
+div#green:hover, div#red:hover, div#blue:hover, div#yellow:hover{
+	cursor: pointer;
+}
 
+/*
+Panel
+*/
 div.panel{
 	background: #ECE7EE;
 	width: 150px;
@@ -87,20 +97,47 @@ div.panel{
 	position: absolute;
 }
 div.panel span{
-	margin-left: 47px;
+    margin-top: 30px;
+    margin-left: 40px;
+    position: absolute;
 }
-div.panel span.reset{
+div.reset{
 	margin-left: 0px;
-	font-family: Orbitron cursiva;
-	font-size: 12px;
+	font-family: 'Faster One', cursive;
+	font-size: 10px;
+	margin: auto;
+	width: 10px;
 }
-div.panel input{
-	margin-left: 62px;
+div.reset input{
 	border-radius: 100%;
-	width: 20px;
-	background: red;
+	height: 10px;
+	margin: 0;
+	width: 10px;
+	border: 1px outset;
+	background: #9f0f17;
 	cursor: pointer;
 }
-div#green:hover, div#red:hover, div#blue:hover, div#yellow:hover{
-	cursor: pointer;
+div.reset input:focus{
+	outline: none;
+}
+div.reset input:hover{
+	border: 1px inset;
+}
+
+div.monitor{
+	border: 3px solid #555;
+	border-radius: 20%;
+	width: 30px;
+	height: 20px;
+	margin: auto;
+	margin-top: 50px;
+	margin-bottom: 10px;
+	padding: 5px;
+	background: #9f0f17;
+}
+div.monitor span#score{
+	margin: auto;
+	padding-left: 5px;
+	font-family: Audiowide;
+	color: #fff;
 }

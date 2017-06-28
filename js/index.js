@@ -1,60 +1,112 @@
-var div = document.querySelectorAll("div.color");
+var div = document.querySelectorAll("div.color > div");
 var reset = document.querySelectorAll("input#reset");
-var arrPosicoes = [];
-var currentClick = 0;
+var arrPosicoes;
+var currentClick;
 var context;
+
+function restart(){
+	currentClick = 0;
+	arrPosicoes = [];
+	iniciaNovaSequencia();
+	document.getElementById('score').innerText = '--';
+};
 
 (function() {
 	context = new AudioContext();
-	acendeLuz();
+	restart();
 })();
 NodeList.prototype.addEventListener = function(event, func) {
 	this.forEach(function(content, item) {
 		content.addEventListener(event, func);
 	});
 };
-
 reset.addEventListener("click", function() {
-	currentClick = 0;
-	arrPosicoes = [];
-	acendeLuz();
+	restart();
 });
 
 div.addEventListener("click", function() {
-	acendeLuz();
-	currentClick++;
-});
-
-function acendeLuz() {
-	var proximaLuz = Math.floor(Math.random() * 4 - 0);
-	var currentColor = "";
-	var frequency = 0;
-
-	switch (proximaLuz) {
-		case 0:
-			currentColor = "green";
-			frequency = 440.0;
-			break;
-		case 1:
-			currentColor = "red";
-			frequency = 349.2;
-			break;
-		case 2:
-			currentColor = "blue";
-			frequency = 293.7;
-			break;
-		case 3:
-			currentColor = "yellow";
-			frequency = 261.6;
-			break;
+	
+	console.log(currentClick);
+	console.log(arrPosicoes.length);
+	
+	if (arrPosicoes[currentClick].color == this.id){
+		playSound(arrPosicoes[currentClick].color, arrPosicoes[currentClick].frequency);
+		fadeIn(this);
+		currentClick++;
+		document.getElementById('score').innerText = currentClick < 10 ? '0'.concat(currentClick) : currentClick;
+	}
+	else
+	{
+		playSound(arrPosicoes[currentClick].color, 200);
+		fadeIn(this);
 	}
 	
-	playSound(currentColor, frequency);
-	fade(document.getElementById(currentColor));
-	arrPosicoes.push(proximaLuz);
+	if (arrPosicoes.length == currentClick)
+		iniciaNovaSequencia(this, currentClick);
+});
+
+function iniciaNovaSequencia(val, index) {
+	if (val === undefined) {
+		acendeLuz();
+		return false;
+	}
+
+	if (arrPosicoes[index].color != val.id) {
+		alert('erro');
+		return false;
+	}
+	console.log(arrPosicoes.length + '-' + index);
+	if (index <= 20)
+	{
+		acendeLuz();
+
+		arrPosicoes.forEach (function(i, index) {
+			var interval = setTimeout(function() {
+				playSound(i.color, i.frequency);
+				fadeIn(document.getElementById(i.color));
+
+				clearInterval(interval);
+			}, 1400*(index+1));
+		});
+	}
 }
 
-function fade(element) {
+function acendeLuz(currentColor, frequency) {
+	var proximaLuz = Math.floor(Math.random() * 4 - 0);
+	
+	if (currentClick == 20)
+		return false;
+
+	if (currentColor === undefined)
+	{
+		switch (proximaLuz) {
+			case 0:
+				currentColor = "green";
+				frequency = 523.3;
+				break;
+			case 1:
+				currentColor = "red";
+				frequency = 622.3;
+				break;
+			case 2:
+				currentColor = "blue";
+				frequency = 740.0;
+				break;
+			case 3:
+				currentColor = "yellow";
+				frequency = 880.0;
+				break;
+		}
+		
+		playSound(currentColor, frequency);
+		fadeIn(document.getElementById(currentColor));
+	}
+	
+	var obj = {color: currentColor, frequency: frequency};
+	arrPosicoes.push(obj);
+}
+
+function fadeIn(element) {
 	var opacity = 1;
 	var timer = setInterval(function() {
 		if (opacity <= 0.5)
@@ -65,10 +117,10 @@ function fade(element) {
 		opacity -= opacity * 0.4;
 	}, 30);
 
-	unfade(element);
+	fadeOut(element);
 }
 
-function unfade(element) {
+function fadeOut(element) {
 	var opacity = 0.1;
 	element.style.display = "block";
 	
