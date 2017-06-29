@@ -3,6 +3,7 @@ var reset = document.querySelectorAll("input#reset");
 var arrPosicoes;
 var currentClick;
 var context;
+var limit = 5;
 
 function restart(){
 	currentClick = 0;
@@ -25,24 +26,34 @@ reset.addEventListener("click", function() {
 });
 
 div.addEventListener("click", function() {
-	
-	console.log(currentClick);
-	console.log(arrPosicoes.length);
-	
 	if (arrPosicoes[currentClick].color == this.id){
 		playSound(arrPosicoes[currentClick].color, arrPosicoes[currentClick].frequency);
 		fadeIn(this);
 		currentClick++;
-		document.getElementById('score').innerText = currentClick < 10 ? '0'.concat(currentClick) : currentClick;
+		
+		if (currentClick == arrPosicoes.length){
+			if (arrPosicoes.length === limit + 1){
+				alert('Você ganhou.');
+				restart();
+				return false;
+			}
+
+			var interval = setTimeout(function() {
+				document.getElementById('score').innerText = currentClick < 10 ? '0'.concat(currentClick) : currentClick;
+				iniciaNovaSequencia(this, currentClick);
+
+				clearInterval(interval);
+				currentClick = 0;
+			}, 600);
+		}
 	}
 	else
 	{
 		playSound(arrPosicoes[currentClick].color, 200);
 		fadeIn(this);
+		alert('Fim de jogo, você errou.');
+		restart();
 	}
-	
-	if (arrPosicoes.length == currentClick)
-		iniciaNovaSequencia(this, currentClick);
 });
 
 function iniciaNovaSequencia(val, index) {
@@ -50,12 +61,7 @@ function iniciaNovaSequencia(val, index) {
 		acendeLuz();
 		return false;
 	}
-
-	if (arrPosicoes[index].color != val.id) {
-		alert('erro');
-		return false;
-	}
-	console.log(arrPosicoes.length + '-' + index);
+	
 	if (index <= 20)
 	{
 		acendeLuz();
@@ -74,7 +80,7 @@ function iniciaNovaSequencia(val, index) {
 function acendeLuz(currentColor, frequency) {
 	var proximaLuz = Math.floor(Math.random() * 4 - 0);
 	
-	if (currentClick == 20)
+	if (currentClick === limit + 1)
 		return false;
 
 	if (currentColor === undefined)
