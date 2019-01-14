@@ -1,5 +1,3 @@
-import { renderFile } from 'pug';
-
 // let arrPosicoes;
 // let currentClick;
 // let context;
@@ -159,4 +157,4 @@ import { renderFile } from 'pug';
 //   g.gain.exponentialRampToValueAtTime(0.0002, context.currentTime + X);
 // }
 
-renderFile("../src/templates/index.pug");
+pug.renderFile("../src/templates/index.pug");
