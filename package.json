@@ -1,0 +1,40 @@
+{
+  "name": "genius",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/src/app.js",
+  "types": "build/src/app.d.ts",
+  "files": [
+    "build/src"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "start:dev": "nodemon",
+    "check": "gts check",
+    "clean": "gts clean",
+    "compile": "tsc -p . && gulp",
+    "fix": "gts fix",
+    "docker:build": "rm -rf package-lock.json && docker build -t totvsmpn.azurecr.io/mpn-gateway-api .",
+    "docker:push": "docker push totvsmpn.azurecr.io/mpn-gateway-api",
+    "docker": "npm run docker:build && npm run docker:push"
+  },
+  "keywords": [],
+  "author": "",
+  "dependencies": {
+    "gulp": "^4.0.0",
+    "http-server": "^0.11.1",
+    "pug": "^2.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.1",
+    "@types/pug": "^2.0.4",
+    "gts": "^0.9.0",
+    "gulp": "^4.0.0",
+    "gulp-typescript": "^5.0.0-alpha.3",
+    "nodemon": "^1.18.9",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.1.6"
+  }
+}
