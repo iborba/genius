@@ -1,5 +1,5 @@
 import * as pug from "pug";
-import http = require('http');
+import * as http from "http";
 
 const hostname = '127.0.0.1';
 const port = 3000;
@@ -7,8 +7,8 @@ const port = 3000;
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
-  pug.renderFile("../src/templates/index.pug");
-  res.end('Hello World\n');
+  const html = pug.renderFile("../src/templates/index.pug");
+  res.end(html);
 });
 
 server.listen(port, hostname, () => {

@@ -156,5 +156,3 @@
 //   o.start(0);
 //   g.gain.exponentialRampToValueAtTime(0.0002, context.currentTime + X);
 // }
-
-pug.renderFile("../src/templates/index.pug");
